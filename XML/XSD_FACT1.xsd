@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="AccountTransaction">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" name="FactAccountTransaction">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ACCOUNT_ID" type="xs:unsignedByte" />
+							<xs:element name="AVAIL_BALANCE" type="xs:float" />
+							<xs:element name="LAST_ACTIVITY_DATE" type="xs:dateTime" />
+							<xs:element name="OPEN_DATE" type="xs:dateTime" />
+							<xs:element name="PENDING_BALANCE" type="xs:float" />
+							<xs:element name="STATUS" type="xs:string" />
+							<xs:element name="CUST_ID" type="xs:unsignedByte" />
+							<xs:element name="OPEN_BRANCH_ID" type="xs:unsignedByte" />
+							<xs:element name="OPEN_EMP_ID" type="xs:unsignedByte" />
+							<xs:element name="PRODUCT_CD" type="xs:string" />
+							<xs:element name="TXN_ID" type="xs:unsignedByte" />
+							<xs:element name="AMOUNT" type="xs:float" />
+							<xs:element name="FUNDS_AVAIL_DATE" type="xs:dateTime" />
+							<xs:element name="TXN_DATE" type="xs:dateTime" />
+							<xs:element name="TXN_TYPE_CD" type="xs:string" />
+							<xs:element name="EXECUTION_BRANCH_ID" type="xs:unsignedByte" />
+							<xs:element name="TELLER_EMP_ID" type="xs:unsignedByte" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

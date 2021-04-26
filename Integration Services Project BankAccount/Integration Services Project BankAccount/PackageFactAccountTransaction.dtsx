@@ -1,0 +1,2118 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/7/2019 12:50:09 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-HNF5H2Q"
+  DTS:CreatorName="DESKTOP-HNF5H2Q\risha"
+  DTS:DTSID="{FCC6FB75-A778-48BE-96D9-D33BBE7DE118}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.0900.40"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="PackageFactAccountTransaction"
+  DTS:PackageType="5"
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{01403790-3A1D-4582-9D9B-3F80A83AA13F}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-KR6U92E\SQLSERVER.BANK]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{24B09AD2-6C6B-4EA3-B526-428C5501FDB3}"
+      DTS:ObjectName="DESKTOP-KR6U92E\SQLSERVER.BANK">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-KR6U92E\SQLSERVER;Initial Catalog=BANK;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-KR6U92E\SQLSERVER.BANK_DW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{5F37565C-A7AE-4A4C-907F-A776F9F990E6}"
+      DTS:ObjectName="DESKTOP-KR6U92E\SQLSERVER.BANK_DW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-KR6U92E\SQLSERVER;Initial Catalog=BANK_DW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{D2B9ACF8-BD04-4952-8BD2-A16C2661A58F}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\Account"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Account"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[dimAccount]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Account.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-KR6U92E\SQLSERVER.BANK_DW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-KR6U92E\SQLSERVER.BANK_DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[ACCOUNT_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].ExternalColumns[ACCOUNT_ID]"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[ACCOUNT_ID]"
+                      name="ACCOUNT_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[AVAIL_BALANCE]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].ExternalColumns[AVAIL_BALANCE]"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[AVAIL_BALANCE]"
+                      name="AVAIL_BALANCE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[LAST_ACTIVITY_DATE]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].ExternalColumns[LAST_ACTIVITY_DATE]"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[LAST_ACTIVITY_DATE]"
+                      name="LAST_ACTIVITY_DATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[OPEN_DATE]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].ExternalColumns[OPEN_DATE]"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[OPEN_DATE]"
+                      name="OPEN_DATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[PENDING_BALANCE]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].ExternalColumns[PENDING_BALANCE]"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[PENDING_BALANCE]"
+                      name="PENDING_BALANCE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[STATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].ExternalColumns[STATUS]"
+                      length="10"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[STATUS]"
+                      name="STATUS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[CUST_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].ExternalColumns[CUST_ID]"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[CUST_ID]"
+                      name="CUST_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[OPEN_BRANCH_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].ExternalColumns[OPEN_BRANCH_ID]"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[OPEN_BRANCH_ID]"
+                      name="OPEN_BRANCH_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[OPEN_EMP_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].ExternalColumns[OPEN_EMP_ID]"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[OPEN_EMP_ID]"
+                      name="OPEN_EMP_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[PRODUCT_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].ExternalColumns[PRODUCT_CD]"
+                      length="10"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[PRODUCT_CD]"
+                      name="PRODUCT_CD"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].ExternalColumns[ACCOUNT_ID]"
+                      dataType="i4"
+                      name="ACCOUNT_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].ExternalColumns[AVAIL_BALANCE]"
+                      dataType="r8"
+                      name="AVAIL_BALANCE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].ExternalColumns[LAST_ACTIVITY_DATE]"
+                      dataType="dbTimeStamp"
+                      name="LAST_ACTIVITY_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].ExternalColumns[OPEN_DATE]"
+                      dataType="dbTimeStamp"
+                      name="OPEN_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].ExternalColumns[PENDING_BALANCE]"
+                      dataType="r8"
+                      name="PENDING_BALANCE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].ExternalColumns[STATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="STATUS" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].ExternalColumns[CUST_ID]"
+                      dataType="i4"
+                      name="CUST_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].ExternalColumns[OPEN_BRANCH_ID]"
+                      dataType="i4"
+                      name="OPEN_BRANCH_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].ExternalColumns[OPEN_EMP_ID]"
+                      dataType="i4"
+                      name="OPEN_EMP_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].ExternalColumns[PRODUCT_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="PRODUCT_CD" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Error Output].Columns[ACCOUNT_ID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Error Output].Columns[ACCOUNT_ID]"
+                      name="ACCOUNT_ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Error Output].Columns[AVAIL_BALANCE]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Error Output].Columns[AVAIL_BALANCE]"
+                      name="AVAIL_BALANCE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Error Output].Columns[LAST_ACTIVITY_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Error Output].Columns[LAST_ACTIVITY_DATE]"
+                      name="LAST_ACTIVITY_DATE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Error Output].Columns[OPEN_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Error Output].Columns[OPEN_DATE]"
+                      name="OPEN_DATE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Error Output].Columns[PENDING_BALANCE]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Error Output].Columns[PENDING_BALANCE]"
+                      name="PENDING_BALANCE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Error Output].Columns[STATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Error Output].Columns[STATUS]"
+                      name="STATUS" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Error Output].Columns[CUST_ID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Error Output].Columns[CUST_ID]"
+                      name="CUST_ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Error Output].Columns[OPEN_BRANCH_ID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Error Output].Columns[OPEN_BRANCH_ID]"
+                      name="OPEN_BRANCH_ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Error Output].Columns[OPEN_EMP_ID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Error Output].Columns[OPEN_EMP_ID]"
+                      name="OPEN_EMP_ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Error Output].Columns[PRODUCT_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Error Output].Columns[PRODUCT_CD]"
+                      name="PRODUCT_CD" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Account.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\factAccountTransaction"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="factAccountTransaction"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[factAccountTransaction]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\factAccountTransaction.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-KR6U92E\SQLSERVER.BANK_DW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-KR6U92E\SQLSERVER.BANK_DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].Columns[ACCOUNT_ID]"
+                      cachedDataType="i4"
+                      cachedName="ACCOUNT_ID"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[ACCOUNT_ID]"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[ACCOUNT_ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].Columns[AVAIL_BALANCE]"
+                      cachedDataType="r8"
+                      cachedName="AVAIL_BALANCE"
+                      externalMetadataColumnId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[AVAIL_BALANCE]"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[AVAIL_BALANCE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].Columns[LAST_ACTIVITY_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="LAST_ACTIVITY_DATE"
+                      externalMetadataColumnId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[LAST_ACTIVITY_DATE]"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[LAST_ACTIVITY_DATE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].Columns[OPEN_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="OPEN_DATE"
+                      externalMetadataColumnId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[OPEN_DATE]"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[OPEN_DATE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].Columns[PENDING_BALANCE]"
+                      cachedDataType="r8"
+                      cachedName="PENDING_BALANCE"
+                      externalMetadataColumnId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[PENDING_BALANCE]"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[PENDING_BALANCE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].Columns[STATUS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="STATUS"
+                      externalMetadataColumnId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[STATUS]"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[STATUS]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].Columns[CUST_ID]"
+                      cachedDataType="i4"
+                      cachedName="CUST_ID"
+                      externalMetadataColumnId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[CUST_ID]"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[CUST_ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].Columns[OPEN_BRANCH_ID]"
+                      cachedDataType="i4"
+                      cachedName="OPEN_BRANCH_ID"
+                      externalMetadataColumnId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[OPEN_BRANCH_ID]"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[OPEN_BRANCH_ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].Columns[OPEN_EMP_ID]"
+                      cachedDataType="i4"
+                      cachedName="OPEN_EMP_ID"
+                      externalMetadataColumnId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[OPEN_EMP_ID]"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[OPEN_EMP_ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].Columns[PRODUCT_CD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="PRODUCT_CD"
+                      externalMetadataColumnId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[PRODUCT_CD]"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[PRODUCT_CD]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].Columns[TXN_ID]"
+                      cachedDataType="numeric"
+                      cachedName="TXN_ID"
+                      cachedPrecision="19"
+                      externalMetadataColumnId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[TXN_ID]"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[TXN_ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].Columns[AMOUNT]"
+                      cachedDataType="r8"
+                      cachedName="AMOUNT"
+                      externalMetadataColumnId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[AMOUNT]"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[AMOUNT]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].Columns[FUNDS_AVAIL_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="FUNDS_AVAIL_DATE"
+                      externalMetadataColumnId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[FUNDS_AVAIL_DATE]"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[FUNDS_AVAIL_DATE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].Columns[TXN_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="TXN_DATE"
+                      externalMetadataColumnId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[TXN_DATE]"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[TXN_DATE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].Columns[TXN_TYPE_CD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="TXN_TYPE_CD"
+                      externalMetadataColumnId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[TXN_TYPE_CD]"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[TXN_TYPE_CD]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].Columns[EXECUTION_BRANCH_ID]"
+                      cachedDataType="i4"
+                      cachedName="EXECUTION_BRANCH_ID"
+                      externalMetadataColumnId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[EXECUTION_BRANCH_ID]"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[EXECUTION_BRANCH_ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].Columns[TELLER_EMP_ID]"
+                      cachedDataType="i4"
+                      cachedName="TELLER_EMP_ID"
+                      externalMetadataColumnId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[TELLER_EMP_ID]"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[TELLER_EMP_ID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[ACCOUNT_ID]"
+                      dataType="i4"
+                      name="ACCOUNT_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[AVAIL_BALANCE]"
+                      dataType="r8"
+                      name="AVAIL_BALANCE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[LAST_ACTIVITY_DATE]"
+                      dataType="dbTimeStamp"
+                      name="LAST_ACTIVITY_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[OPEN_DATE]"
+                      dataType="dbTimeStamp"
+                      name="OPEN_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[PENDING_BALANCE]"
+                      dataType="r8"
+                      name="PENDING_BALANCE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[STATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="STATUS" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[CUST_ID]"
+                      dataType="i4"
+                      name="CUST_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[OPEN_BRANCH_ID]"
+                      dataType="i4"
+                      name="OPEN_BRANCH_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[OPEN_EMP_ID]"
+                      dataType="i4"
+                      name="OPEN_EMP_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[PRODUCT_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="PRODUCT_CD" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[TXN_ID]"
+                      dataType="numeric"
+                      name="TXN_ID"
+                      precision="19" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[AMOUNT]"
+                      dataType="r8"
+                      name="AMOUNT" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[FUNDS_AVAIL_DATE]"
+                      dataType="dbTimeStamp"
+                      name="FUNDS_AVAIL_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[TXN_DATE]"
+                      dataType="dbTimeStamp"
+                      name="TXN_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[TXN_TYPE_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="TXN_TYPE_CD" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[EXECUTION_BRANCH_ID]"
+                      dataType="i4"
+                      name="EXECUTION_BRANCH_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input].ExternalColumns[TELLER_EMP_ID]"
+                      dataType="i4"
+                      name="TELLER_EMP_ID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\factAccountTransaction.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\factAccountTransaction.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\factAccountTransaction.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\factAccountTransaction.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Merge Join"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">2</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[ACCOUNT_ID]"
+                      cachedDataType="i4"
+                      cachedName="ACCOUNT_ID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[ACCOUNT_ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[AVAIL_BALANCE]"
+                      cachedDataType="r8"
+                      cachedName="AVAIL_BALANCE"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[AVAIL_BALANCE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[LAST_ACTIVITY_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="LAST_ACTIVITY_DATE"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[LAST_ACTIVITY_DATE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[OPEN_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="OPEN_DATE"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[OPEN_DATE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[PENDING_BALANCE]"
+                      cachedDataType="r8"
+                      cachedName="PENDING_BALANCE"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[PENDING_BALANCE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[STATUS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="STATUS"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[STATUS]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[CUST_ID]"
+                      cachedDataType="i4"
+                      cachedName="CUST_ID"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[CUST_ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[OPEN_BRANCH_ID]"
+                      cachedDataType="i4"
+                      cachedName="OPEN_BRANCH_ID"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[OPEN_BRANCH_ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[OPEN_EMP_ID]"
+                      cachedDataType="i4"
+                      cachedName="OPEN_EMP_ID"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[OPEN_EMP_ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[PRODUCT_CD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="PRODUCT_CD"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[PRODUCT_CD]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[ACCOUNT_ID]"
+                      cachedDataType="i4"
+                      cachedName="ACCOUNT_ID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[ACCOUNT_ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[TXN_ID]"
+                      cachedDataType="numeric"
+                      cachedName="TXN_ID"
+                      cachedPrecision="19"
+                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[TXN_ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[AMOUNT]"
+                      cachedDataType="r8"
+                      cachedName="AMOUNT"
+                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[AMOUNT]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[FUNDS_AVAIL_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="FUNDS_AVAIL_DATE"
+                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[FUNDS_AVAIL_DATE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[TXN_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="TXN_DATE"
+                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[TXN_DATE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[TXN_TYPE_CD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="TXN_TYPE_CD"
+                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[TXN_TYPE_CD]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[EXECUTION_BRANCH_ID]"
+                      cachedDataType="i4"
+                      cachedName="EXECUTION_BRANCH_ID"
+                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[EXECUTION_BRANCH_ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[TELLER_EMP_ID]"
+                      cachedDataType="i4"
+                      cachedName="TELLER_EMP_ID"
+                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[TELLER_EMP_ID]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[ACCOUNT_ID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[ACCOUNT_ID]"
+                      name="ACCOUNT_ID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[ACCOUNT_ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[AVAIL_BALANCE]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[AVAIL_BALANCE]"
+                      name="AVAIL_BALANCE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[AVAIL_BALANCE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[LAST_ACTIVITY_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[LAST_ACTIVITY_DATE]"
+                      name="LAST_ACTIVITY_DATE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[LAST_ACTIVITY_DATE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[OPEN_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[OPEN_DATE]"
+                      name="OPEN_DATE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[OPEN_DATE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[PENDING_BALANCE]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[PENDING_BALANCE]"
+                      name="PENDING_BALANCE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[PENDING_BALANCE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[STATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[STATUS]"
+                      name="STATUS">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[STATUS]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[CUST_ID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[CUST_ID]"
+                      name="CUST_ID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[CUST_ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[OPEN_BRANCH_ID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[OPEN_BRANCH_ID]"
+                      name="OPEN_BRANCH_ID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[OPEN_BRANCH_ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[OPEN_EMP_ID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[OPEN_EMP_ID]"
+                      name="OPEN_EMP_ID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[OPEN_EMP_ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[PRODUCT_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[PRODUCT_CD]"
+                      name="PRODUCT_CD">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[PRODUCT_CD]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[TXN_ID]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[TXN_ID]"
+                      name="TXN_ID"
+                      precision="19">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[TXN_ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[AMOUNT]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[AMOUNT]"
+                      name="AMOUNT">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[AMOUNT]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[FUNDS_AVAIL_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[FUNDS_AVAIL_DATE]"
+                      name="FUNDS_AVAIL_DATE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[FUNDS_AVAIL_DATE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[TXN_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[TXN_DATE]"
+                      name="TXN_DATE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[TXN_DATE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[TXN_TYPE_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[TXN_TYPE_CD]"
+                      name="TXN_TYPE_CD">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[TXN_TYPE_CD]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[EXECUTION_BRANCH_ID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[EXECUTION_BRANCH_ID]"
+                      name="EXECUTION_BRANCH_ID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[EXECUTION_BRANCH_ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[TELLER_EMP_ID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[TELLER_EMP_ID]"
+                      name="TELLER_EMP_ID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[TELLER_EMP_ID]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Sort"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort.Inputs[Sort Input].Columns[ACCOUNT_ID]"
+                      cachedDataType="i4"
+                      cachedName="ACCOUNT_ID"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[ACCOUNT_ID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort.Inputs[Sort Input].Columns[AVAIL_BALANCE]"
+                      cachedDataType="r8"
+                      cachedName="AVAIL_BALANCE"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[AVAIL_BALANCE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort.Inputs[Sort Input].Columns[LAST_ACTIVITY_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="LAST_ACTIVITY_DATE"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[LAST_ACTIVITY_DATE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort.Inputs[Sort Input].Columns[OPEN_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="OPEN_DATE"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[OPEN_DATE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort.Inputs[Sort Input].Columns[PENDING_BALANCE]"
+                      cachedDataType="r8"
+                      cachedName="PENDING_BALANCE"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[PENDING_BALANCE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort.Inputs[Sort Input].Columns[STATUS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="STATUS"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[STATUS]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort.Inputs[Sort Input].Columns[CUST_ID]"
+                      cachedDataType="i4"
+                      cachedName="CUST_ID"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[CUST_ID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort.Inputs[Sort Input].Columns[OPEN_BRANCH_ID]"
+                      cachedDataType="i4"
+                      cachedName="OPEN_BRANCH_ID"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[OPEN_BRANCH_ID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort.Inputs[Sort Input].Columns[OPEN_EMP_ID]"
+                      cachedDataType="i4"
+                      cachedName="OPEN_EMP_ID"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[OPEN_EMP_ID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort.Inputs[Sort Input].Columns[PRODUCT_CD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="PRODUCT_CD"
+                      lineageId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[PRODUCT_CD]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[ACCOUNT_ID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[ACCOUNT_ID]"
+                      name="ACCOUNT_ID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[ACCOUNT_ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[AVAIL_BALANCE]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[AVAIL_BALANCE]"
+                      name="AVAIL_BALANCE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[AVAIL_BALANCE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[LAST_ACTIVITY_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[LAST_ACTIVITY_DATE]"
+                      name="LAST_ACTIVITY_DATE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[LAST_ACTIVITY_DATE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[OPEN_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[OPEN_DATE]"
+                      name="OPEN_DATE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[OPEN_DATE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[PENDING_BALANCE]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[PENDING_BALANCE]"
+                      name="PENDING_BALANCE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[PENDING_BALANCE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[STATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[STATUS]"
+                      name="STATUS">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[STATUS]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[CUST_ID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[CUST_ID]"
+                      name="CUST_ID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[CUST_ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[OPEN_BRANCH_ID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[OPEN_BRANCH_ID]"
+                      name="OPEN_BRANCH_ID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[OPEN_BRANCH_ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[OPEN_EMP_ID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[OPEN_EMP_ID]"
+                      name="OPEN_EMP_ID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[OPEN_EMP_ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[PRODUCT_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[PRODUCT_CD]"
+                      name="PRODUCT_CD">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Account.Outputs[OLE DB Source Output].Columns[PRODUCT_CD]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Sort 1"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort 1"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Sort 1.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort 1.Inputs[Sort Input].Columns[TXN_ID]"
+                      cachedDataType="numeric"
+                      cachedName="TXN_ID"
+                      cachedPrecision="19"
+                      lineageId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[TXN_ID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort 1.Inputs[Sort Input].Columns[AMOUNT]"
+                      cachedDataType="r8"
+                      cachedName="AMOUNT"
+                      lineageId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[AMOUNT]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort 1.Inputs[Sort Input].Columns[FUNDS_AVAIL_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="FUNDS_AVAIL_DATE"
+                      lineageId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[FUNDS_AVAIL_DATE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort 1.Inputs[Sort Input].Columns[TXN_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="TXN_DATE"
+                      lineageId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[TXN_DATE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort 1.Inputs[Sort Input].Columns[TXN_TYPE_CD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="TXN_TYPE_CD"
+                      lineageId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[TXN_TYPE_CD]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort 1.Inputs[Sort Input].Columns[ACCOUNT_ID]"
+                      cachedDataType="i4"
+                      cachedName="ACCOUNT_ID"
+                      lineageId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[ACCOUNT_ID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort 1.Inputs[Sort Input].Columns[EXECUTION_BRANCH_ID]"
+                      cachedDataType="i4"
+                      cachedName="EXECUTION_BRANCH_ID"
+                      lineageId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[EXECUTION_BRANCH_ID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort 1.Inputs[Sort Input].Columns[TELLER_EMP_ID]"
+                      cachedDataType="i4"
+                      cachedName="TELLER_EMP_ID"
+                      lineageId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[TELLER_EMP_ID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Sort 1.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[TXN_ID]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[TXN_ID]"
+                      name="TXN_ID"
+                      precision="19">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[TXN_ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[AMOUNT]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[AMOUNT]"
+                      name="AMOUNT">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[AMOUNT]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[FUNDS_AVAIL_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[FUNDS_AVAIL_DATE]"
+                      name="FUNDS_AVAIL_DATE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[FUNDS_AVAIL_DATE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[TXN_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[TXN_DATE]"
+                      name="TXN_DATE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[TXN_DATE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[TXN_TYPE_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[TXN_TYPE_CD]"
+                      name="TXN_TYPE_CD">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[TXN_TYPE_CD]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[ACCOUNT_ID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[ACCOUNT_ID]"
+                      name="ACCOUNT_ID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[ACCOUNT_ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[EXECUTION_BRANCH_ID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[EXECUTION_BRANCH_ID]"
+                      name="EXECUTION_BRANCH_ID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[EXECUTION_BRANCH_ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[TELLER_EMP_ID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[TELLER_EMP_ID]"
+                      name="TELLER_EMP_ID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[TELLER_EMP_ID]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Transaction"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Transaction"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[dimTransaction]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Transaction.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-KR6U92E\SQLSERVER.BANK_DW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-KR6U92E\SQLSERVER.BANK_DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[TXN_ID]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].ExternalColumns[TXN_ID]"
+                      lineageId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[TXN_ID]"
+                      name="TXN_ID"
+                      precision="19"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[AMOUNT]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].ExternalColumns[AMOUNT]"
+                      lineageId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[AMOUNT]"
+                      name="AMOUNT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[FUNDS_AVAIL_DATE]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].ExternalColumns[FUNDS_AVAIL_DATE]"
+                      lineageId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[FUNDS_AVAIL_DATE]"
+                      name="FUNDS_AVAIL_DATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[TXN_DATE]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].ExternalColumns[TXN_DATE]"
+                      lineageId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[TXN_DATE]"
+                      name="TXN_DATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[TXN_TYPE_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].ExternalColumns[TXN_TYPE_CD]"
+                      length="10"
+                      lineageId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[TXN_TYPE_CD]"
+                      name="TXN_TYPE_CD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[ACCOUNT_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].ExternalColumns[ACCOUNT_ID]"
+                      lineageId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[ACCOUNT_ID]"
+                      name="ACCOUNT_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[EXECUTION_BRANCH_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].ExternalColumns[EXECUTION_BRANCH_ID]"
+                      lineageId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[EXECUTION_BRANCH_ID]"
+                      name="EXECUTION_BRANCH_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[TELLER_EMP_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].ExternalColumns[TELLER_EMP_ID]"
+                      lineageId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].Columns[TELLER_EMP_ID]"
+                      name="TELLER_EMP_ID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].ExternalColumns[TXN_ID]"
+                      dataType="numeric"
+                      name="TXN_ID"
+                      precision="19" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].ExternalColumns[AMOUNT]"
+                      dataType="r8"
+                      name="AMOUNT" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].ExternalColumns[FUNDS_AVAIL_DATE]"
+                      dataType="dbTimeStamp"
+                      name="FUNDS_AVAIL_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].ExternalColumns[TXN_DATE]"
+                      dataType="dbTimeStamp"
+                      name="TXN_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].ExternalColumns[TXN_TYPE_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="TXN_TYPE_CD" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].ExternalColumns[ACCOUNT_ID]"
+                      dataType="i4"
+                      name="ACCOUNT_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].ExternalColumns[EXECUTION_BRANCH_ID]"
+                      dataType="i4"
+                      name="EXECUTION_BRANCH_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output].ExternalColumns[TELLER_EMP_ID]"
+                      dataType="i4"
+                      name="TELLER_EMP_ID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Error Output].Columns[TXN_ID]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Error Output].Columns[TXN_ID]"
+                      name="TXN_ID"
+                      precision="19" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Error Output].Columns[AMOUNT]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Error Output].Columns[AMOUNT]"
+                      name="AMOUNT" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Error Output].Columns[FUNDS_AVAIL_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Error Output].Columns[FUNDS_AVAIL_DATE]"
+                      name="FUNDS_AVAIL_DATE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Error Output].Columns[TXN_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Error Output].Columns[TXN_DATE]"
+                      name="TXN_DATE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Error Output].Columns[TXN_TYPE_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Error Output].Columns[TXN_TYPE_CD]"
+                      name="TXN_TYPE_CD" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Error Output].Columns[ACCOUNT_ID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Error Output].Columns[ACCOUNT_ID]"
+                      name="ACCOUNT_ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Error Output].Columns[EXECUTION_BRANCH_ID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Error Output].Columns[EXECUTION_BRANCH_ID]"
+                      name="EXECUTION_BRANCH_ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Error Output].Columns[TELLER_EMP_ID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Error Output].Columns[TELLER_EMP_ID]"
+                      name="TELLER_EMP_ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[Merge Join Output]"
+              endId="Package\Data Flow Task\factAccountTransaction.Inputs[OLE DB Destination Input]"
+              name="Merge Join Output"
+              startId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task\Sort.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task\Account.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output1]"
+              endId="Package\Data Flow Task\Sort 1.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task\Transaction.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Sort Output]"
+              endId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\Data Flow Task\Sort.Outputs[Sort Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Sort Output1]"
+              endId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\Data Flow Task\Sort 1.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Data Flow Task"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="189,42"
+          Id="Package\Data Flow Task\factAccountTransaction"
+          TopLeft="299,322" />
+        <NodeLayout
+          Size="98,42"
+          Id="Package\Data Flow Task\Sort"
+          TopLeft="221,154" />
+        <NodeLayout
+          Size="134,42"
+          Id="Package\Data Flow Task\Transaction"
+          TopLeft="417,79" />
+        <NodeLayout
+          Size="107,42"
+          Id="Package\Data Flow Task\Sort 1"
+          TopLeft="429,152" />
+        <NodeLayout
+          Size="116,42"
+          Id="Package\Data Flow Task\Account"
+          TopLeft="212,77" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Data Flow Task\Merge Join"
+          TopLeft="326,235" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Sort Output1]"
+          TopLeft="482.5,194">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-71.1666666666667,41"
+              Start="0,0"
+              End="-71.1666666666667,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3009118541033" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3009118541033"
+                    Point2="0,24.3009118541033"
+                    Point3="-4,24.3009118541033" />
+                  <mssgle:LineSegment
+                    End="-67.1666666666667,24.3009118541033" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-67.1666666666667,24.3009118541033"
+                    Point2="-71.1666666666667,24.3009118541033"
+                    Point3="-71.1666666666667,28.3009118541033" />
+                  <mssgle:LineSegment
+                    End="-71.1666666666667,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Sort Output]"
+          TopLeft="270,196">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="121,39"
+              Start="0,0"
+              End="121,31.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.5"
+                    Point2="0,19.5"
+                    Point3="4,19.5" />
+                  <mssgle:LineSegment
+                    End="117,19.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="117,19.5"
+                    Point2="121,19.5"
+                    Point3="121,23.5" />
+                  <mssgle:LineSegment
+                    End="121,31.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output1]"
+          TopLeft="483.25,121">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31"
+              Start="0,0"
+              End="0,23.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="270,119">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35"
+              Start="0,0"
+              End="0,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Merge Join Output]"
+          TopLeft="392.25,277">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45"
+              Start="0,0"
+              End="0,37.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\factAccountTransaction">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Transaction">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Account">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
