@@ -6,7 +6,7 @@ Banking is an ever-growing sector of finance and the economy. To keep track of a
 Using a sample SQL database with bank account details that provides valuable and good quality data to understand how it works well in the banking sector.
 
 ### ER Diagram
-[!screenshot](./DW/ERDiagram.png)
+[!screenshot](./BankingDW/DW/ERDiagram.png)
 
 The tables available in the dataset are as follows:
 -	Account
